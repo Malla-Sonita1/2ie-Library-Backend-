@@ -1,0 +1,6 @@
+-- Remplissage de la table users avec des administrateurs fictifs
+INSERT INTO users (name, email, password, role, is_active, created_at, updated_at) VALUES ('Abdoulaye Diallo', 'diallo.abdoulaye@2ie.edu', '$2b$10$7RM7M3YqOWyGHpH2cz8rHORRXPioOGtqX6cKhpbA.X.4Z9qSBEVvq', 'admin', true, NOW(), NOW());
+INSERT INTO users (name, email, password, role, is_active, created_at, updated_at) VALUES ('Fatimata Traore', 'traore.fatimata@2ie.edu', '$2b$10$JF2YKrZkTeEUA/Q9QWafluX3TpOe2S79qi.MOuwyXzHotL5Y7ZC3q', 'admin', true, NOW(), NOW());
+INSERT INTO users (name, email, password, role, is_active, created_at, updated_at) VALUES ('Ibrahim Ouedraogo', 'ibrahim.ibrahim@2ie.edu', '$2b$10$UzrnjHy6bLL2/EhT93/xe.MKYpX99.4Acyy/AInlBABRyJL42fgYC', 'admin', true, NOW(), NOW());
+INSERT INTO users (name, email, password, role, is_active, created_at, updated_at) VALUES ('Aissata Kone', 'kone.aissata@2ie.edu', '$2b$10$69DlyG4KzTjGP5YoNdmjE.9OasyvCpU5PI/YyecDZhJMGCoNA4f4q', 'admin', true, NOW(), NOW());
+INSERT INTO users (name, email, password, role, is_active, created_at, updated_at) VALUES ('Moussa Cisse', 'cisse.moussa@2ie.edu', '$2b$10$xtdi2zKTgoK13kC8XFNCtuTC9R3JgXI8gCjV.tjH0HaR3cWQaxf0S', 'admin', true, NOW(), NOW());

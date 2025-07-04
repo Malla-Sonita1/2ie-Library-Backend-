@@ -1,0 +1,175 @@
+@adminEmail = traore.fatimata@2ie.edu
+@password =admin124
+@studentEmail = sonita@2ie.edu
+@password = password124
+
+# Variables dynamiques (à remplir après login)
+@admin_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzUxMzEzNTI0LCJleHAiOjE3NTEzMTcxMjR9.xiESQo3GoWY5NG0h4-7zy0cV36fKY8C1Ci19G_W26kU
+
+@student_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE3NTEzMTM4ODgsImV4cCI6MTc1MTMxNzQ4OH0.yYx_73IRwyyzn22ZVt6kK-ZbuBXq4rl4PW7Fu7CWwGA
+
+###  Enregistrer un Étudiant
+# @name registerStudent
+POST http://localhost:4000/api/students/register
+Content-Type: application/json
+
+{
+  "name": "Mamadou Sissoko",
+  "email": "mamadou.sissoko@2ie.edu",
+  "password": "password9012"
+}
+
+###  Connexion Admin (Obtenir admin_token)
+# @name adminLogin
+POST http://localhost:4000/api/admins/login
+Content-Type: application/json
+
+{
+  "email": "traore.fatimata@2ie.edu",
+  "password": "admin124"
+}
+
+
+### Connexion Étudiant (Obtenir student_token)
+# @name studentLogin
+POST http://localhost:4000/api/students/login
+Content-Type: application/json
+
+{
+  "email": "sonita@2ie.edu",
+  "password": "password124"
+}
+
+
+###  Ajouter des Livres (Admin)
+
+POST http://localhost:4000/api/books
+Authorization: Bearer {{admin_token}}
+Content-Type: application/json
+
+{
+  "title": "Planification des Infrastructures Énergétiques",
+  "author": "Oumar Sankara",
+  "genre": "Gestion des Infrastructures",
+  "description": "Optimisation des réseaux énergétiques locaux"
+}
+
+### Emprunter un Livre (Étudiant)
+POST http://localhost:4000/api/loans
+Authorization: Bearer {{student_token}}
+Content-Type: application/json
+
+{
+  "bookId": 5,
+  "dueDate": "2025-07-16"
+}
+
+###  Ajouter un Commentaire (Étudiant)
+POST http://localhost:4000/api/comments
+Authorization: Bearer {{student_token}}
+Content-Type: application/json
+
+{
+  "bookId": 19,
+  "rating": 5,
+  "comment": "Excellent guide pour la gestion de l’eau, très clair et pratique"
+}
+
+### Envoyer une Notification de Retard
+POST http://localhost:4000/api/notifications/late
+Content-Type: application/json
+
+{
+  "email": "sonita@2ie.edu",
+  "bookTitle": "Test Debug Complet",
+  "studentName": "Sonita"
+}
+
+###  Statistiques des Emprunts par Mois
+GET http://localhost:4000/api/stats/borrowed-books
+Authorization: Bearer {{admin_token}}
+
+###  Vérifier les Utilisateurs
+GET http://localhost:4000/api/users
+Authorization: Bearer {{admin_token}}
+
+###  Vérifier les Admins
+GET http://localhost:4000/api/admins
+Authorization: Bearer {{admin_token}}
+
+###  Vérifier les Refresh Tokens
+GET http://localhost:4000/api/refresh-tokens
+Authorization: Bearer {{admin_token}}
+
+### Vérifier les Réservations
+GET http://localhost:4000/api/reservations
+Authorization: Bearer {{admin_token}}
+
+###  Vérifier les Commentaires
+GET http://localhost:4000/api/comments
+Authorization: Bearer {{admin_token}}
+
+###  Tester l'accès au endpoint livres (Admin)
+GET http://localhost:4000/api/books
+Authorization: Bearer {{admin_token}}
+
+
+###  Test Debug Notification de Retard (données minimales)
+POST http://localhost:4000/api/notifications/late
+Content-Type: application/json
+
+{
+  "email": "sonita@2ie.edu",
+  "bookTitle": "Test",
+  "studentName": "Sonita"
+}
+
+
+###  Modifier un Livre (Admin)
+PUT http://localhost:4000/api/books/1
+Authorization: Bearer {{admin_token}}
+Content-Type: application/json
+
+{
+  "title": "Titre modifié",
+  "author": "Auteur modifié",
+  "genre": "Genre modifié",
+  "description": "Description modifiée"
+}
+
+###  Supprimer un Livre (Admin)
+DELETE http://localhost:4000/api/books/1
+Authorization: Bearer {{admin_token}}
+
+###  Lister tous les Livres (Admin)
+GET http://localhost:4000/api/books
+Authorization: Bearer {{admin_token}}
+
+###  Ajouter un Étudiant (Admin)
+POST http://localhost:4000/api/students/register
+Authorization: Bearer {{admin_token}}
+Content-Type: application/json
+
+{
+  "name": "Malla Anita",
+  "email": "anita.malla@2ie.edu",
+  "password": "password134"
+}
+
+###  Modifier un Étudiant (Admin)
+PUT http://localhost:4000/api/students/1
+Authorization: Bearer {{admin_token}}
+Content-Type: application/json
+
+{
+  "name": "Jean Dupont",
+  "email": "jean.dupont@2ie.edu"
+}
+
+###  Supprimer un Étudiant (Admin)
+DELETE http://localhost:4000/api/students/1
+Authorization: Bearer {{admin_token}}
+
+###  Lister tous les Étudiants (Admin)
+GET http://localhost:4000/api/students
+Authorization: Bearer {{admin_token}}
