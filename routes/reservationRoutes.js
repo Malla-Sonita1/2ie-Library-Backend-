@@ -5,8 +5,8 @@ const role = require('../middlewares/roleMiddleware');
 const loanController = require('../controllers/loanController');
 const reservationController = require('../controllers/reservationController');
 
-// Créer un nouvel emprunt (étudiant)
-router.post('/', auth, loanController.createLoan);
+// Créer une nouvelle réservation (étudiant)
+router.post('/', auth, reservationController.createReservation);
 
 // Lister toutes les réservations (admin)
 router.get('/', auth, role('admin'), reservationController.getAllReservations);

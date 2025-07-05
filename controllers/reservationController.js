@@ -44,8 +44,8 @@ exports.cancelReservation = async (req, res) => {
     if (!rows.length) {
       return res.status(404).json({ message: "Réservation introuvable", success: false });
     }
-    // Supprimer la réservation
-    await db.query('DELETE FROM reservations WHERE id = ?', [reservationId]);
+    // Mettre à jour le statut à 'annulee' au lieu de supprimer
+    await db.query('UPDATE reservations SET status = "annulee", updated_at = NOW() WHERE id = ?', [reservationId]);
     res.json({ message: "Réservation annulée", success: true });
   } catch (error) {
     res.status(500).json({ message: "Erreur lors de l'annulation", success: false });
